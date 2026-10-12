@@ -1,0 +1,11 @@
+﻿namespace OrderServiceAPI.Entity.Models;
+
+public class Order
+{
+    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public string ProductName { get; set; }
+    public decimal UnitPrice { get; set; }
+    public decimal Tax { get; set; }
+    public decimal Total { get; set; }
+}
