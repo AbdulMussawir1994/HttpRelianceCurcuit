@@ -16,17 +16,17 @@ public class DownstreamExceptionHandler(ILogger<DownstreamExceptionHandler> logg
         {
             case BrokenCircuitException:
                 statusCode = StatusCodes.Status503ServiceUnavailable;
-                title = "Product service circuit is open";
+                title = "Downstream service circuit is open";
                 break;
 
             case TimeoutRejectedException:
                 statusCode = StatusCodes.Status504GatewayTimeout;
-                title = "Product service timed out";
+                title = "Downstream service timed out";
                 break;
 
             case HttpRequestException:
                 statusCode = StatusCodes.Status503ServiceUnavailable;
-                title = "Product service unavailable";
+                title = "Downstream service unavailable";
                 break;
 
             default:

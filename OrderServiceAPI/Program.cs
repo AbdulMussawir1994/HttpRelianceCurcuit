@@ -9,7 +9,7 @@ builder.Services.AddHealthChecks();
 
 builder.Services.AddExceptionHandler<DownstreamExceptionHandler>();
 
-builder.Services.AddOrderApiServices(builder.Configuration);
+builder.Services.RegisterServices(builder.Configuration);
 
 builder.Services.AddSwaggerGen();
 
