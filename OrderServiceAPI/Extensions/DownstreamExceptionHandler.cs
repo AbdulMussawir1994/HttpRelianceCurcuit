@@ -34,6 +34,7 @@ public class DownstreamExceptionHandler(ILogger<DownstreamExceptionHandler> logg
         }
 
         logger.LogWarning(exception, "Downstream service failure. StatusCode: {StatusCode}, TraceId: {TraceId}", statusCode, httpContext.TraceIdentifier);
+        //logger.LogWarning("warn: External API is unavailable. Please try again later. Status: 503");
 
         httpContext.Response.StatusCode = statusCode;
 
