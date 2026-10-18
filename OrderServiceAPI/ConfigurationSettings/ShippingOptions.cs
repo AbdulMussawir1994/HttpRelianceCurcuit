@@ -11,7 +11,7 @@ public class ShippingOptions
     public required string BaseUrl { get; init; }
 
     [Range(1, 300)]
-    public int TimeoutSeconds { get; init; } = 20;
+    public int TimeoutSeconds { get; init; } = 0;
 
     [Required]
     public string QuotePathTemplate { get; init; } = "api/Shipping/GetQuote/{productId}";

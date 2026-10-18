@@ -18,8 +18,8 @@ public static class ServicesDependencyInjection
             .AddOptions<ResilienceSettings>()
             .Bind(configuration.GetSection(ResilienceSettings.SectionName))
             .ValidateDataAnnotations()
-            .Validate(settings => settings.CircuitSamplingSeconds >= 2 * settings.AttemptTimeoutSeconds,
-                "CircuitSamplingSeconds must be at least twice AttemptTimeoutSeconds.")
+            .Validate(settings => settings.CircuitSamplingPeriod >= 2 * settings.AttemptTimeoutSeconds,
+                "CircuitSamplingPeriod must be at least twice AttemptTimeoutSeconds.")
             .ValidateOnStart();
 
         services

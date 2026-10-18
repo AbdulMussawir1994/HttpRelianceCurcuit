@@ -60,8 +60,7 @@ public static class HttpClientExtensions
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
-    private static void ConfigurePipeline(ResiliencePipelineBuilder<HttpResponseMessage> pipeline, ResilienceSettings settings,
-        int totalTimeoutSeconds)
+    private static void ConfigurePipeline(ResiliencePipelineBuilder<HttpResponseMessage> pipeline, ResilienceSettings settings, int totalTimeoutSeconds)
     {
         // Strategies execute from outermost to innermost. Each client has its own state.
         pipeline.AddTimeout(TimeSpan.FromSeconds(totalTimeoutSeconds));
@@ -83,7 +82,7 @@ public static class HttpClientExtensions
         {
             FailureRatio = settings.CircuitFailureRatio,
             MinimumThroughput = settings.CircuitMinimumThroughput,
-            SamplingDuration = TimeSpan.FromSeconds(settings.CircuitSamplingSeconds),
+            SamplingDuration = TimeSpan.FromSeconds(settings.CircuitSamplingPeriod),
             BreakDuration = TimeSpan.FromSeconds(settings.CircuitBreakSeconds),
             ShouldHandle = args => ValueTask.FromResult(HttpTransientErrorDetector.IsTransient(args.Outcome))
         });

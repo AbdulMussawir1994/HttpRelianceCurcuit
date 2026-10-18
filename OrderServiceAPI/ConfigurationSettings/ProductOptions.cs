@@ -11,5 +11,5 @@ public class ProductOptions
     public required string BaseUrl { get; init; }
 
     [Range(1, 300)]
-    public int TimeoutSeconds { get; init; } = 15;
+    public int TimeoutSeconds { get; init; } = 0;
 }
