@@ -63,7 +63,7 @@ public static class HttpClientExtensions
     private static void ConfigurePipeline(ResiliencePipelineBuilder<HttpResponseMessage> pipeline, ResilienceSettings settings, int totalTimeoutSeconds)
     {
         // Strategies execute from outermost to innermost. Each client has its own state.
-        pipeline.AddTimeout(TimeSpan.FromSeconds(totalTimeoutSeconds));
+        //   pipeline.AddTimeout(TimeSpan.FromSeconds(totalTimeoutSeconds));
 
         // A retry strategy requires at least one retry. Zero disables it entirely.
         if (settings.RetryCount > 0)
@@ -86,6 +86,8 @@ public static class HttpClientExtensions
             BreakDuration = TimeSpan.FromSeconds(settings.CircuitBreakSeconds),
             ShouldHandle = args => ValueTask.FromResult(HttpTransientErrorDetector.IsTransient(args.Outcome))
         });
-        pipeline.AddTimeout(TimeSpan.FromSeconds(settings.AttemptTimeoutSeconds));
+
+        //This below code use when you want to set Task CancellationToken timeout for each request.
+        //   pipeline.AddTimeout(TimeSpan.FromSeconds(settings.AttemptTimeoutSeconds));
     }
 }
